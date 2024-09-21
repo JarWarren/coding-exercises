@@ -16,7 +16,7 @@ class LocationsVM: ViewModel {
     // Uninteresting state (how far the user has scrolled, whether they have zoomed in) can live on the view and be forgotten
     
     // It exists on a single struct both for clarity and performance
-    // (being a single struct means we can batch updates to the UI)
+    // (Being a single struct means we can batch updates to the UI. If it were split into separate fields, each write would trigger an update)
     struct State: Hashable {
         var locations = [Location]()
         var selectedLocation: Location?

@@ -88,26 +88,25 @@ Do not edit any lines above this line break.
 
 ## Implementation
 
-I left some notes throughout the app, but here are some general comments on the different layers
-
 ### UI
 This app follows MVVM.
-- If state is "important" is needs to live in a ViewModel
-- If state is "uninteresting" it needs to live in a View
+- If state is "important" it needs to live in a ViewModel.
+- If state is "uninteresting" it needs to live in a View.
   - (explanation in `LocationsVM.swift`)
-- ViewModels are the intermediary between Views and the rest of the app
-- Small views/components don't usually need ViewModels
+  - Basically, if a value is only used to drive a UI change, it doesn't need to be in a ViewModel.
+  - If a value is used to make a decision, it needs to be in a ViewModel.
+- ViewModels are the intermediary between Views and the rest of the app.
+- Small views/components don't usually need ViewModels.
 
 ### Networking
-- I'm a fan of creating a `Routes.swift` file, similar to what backend developers do. iOS devs have a habit of spreading networking code across the app and telling ourselves its scales better (it doesn't)
-- I didn't get around to caching
+- I'm a fan of creating a `Routes.swift` file, similar to what backend developers do. iOS devs have a habit of spreading networking code across the app and telling ourselves it scales better (it doesn't).
+- I didn't get around to caching.
 
 ### Models
-- Very straightforward. I like to keep app-wide types in the root of the Models folder
-- DTOs are in a subfolder and are usually private or nested, so they don't clutter the global namespace
+- Straightforward. I like to keep app-wide types in the root of the Models folder.
+- DTOs are in a subfolder and are usually private or nested, so they don't clutter the global namespace.
 
-In this particular project, my instinct was to define an `Attribute` array on the `Location` struct. There's an argument that it's more "future proof" because it can decode fields that don't exist yet.
-ex.
+In this particular project, my instinct was to define an `Attribute` array on the `Location` struct. There's an argument that it's more "future-proof" because it can decode fields that don't exist yet.
 ```
 struct Location: Codable {
     let id: Int
@@ -122,7 +121,7 @@ struct Location: Codable {
 ```
 
 I decided against it. It's clear that the backend is trying to send the same 4 fields on every `Location` - even if the schema is unorthodox.
-Because of that, it's better to flatten and simplify the `Location` struct. None of the rest of the app needs to know about `Attribute`, and the codebase benefits from added simplicity.
+Because of that, it's better to flatten and simplify the `Location` struct. The rest of the app doesn't have to know about `Attribute`, and benefits from added simplicity.
 If we need a new field in the future, we can just add it.
 
 In other words, the extra code probably wouldn't be harmful, but it takes time to write, takes up space, and has to be maintained once it exists. "Don't solve problems you don't have!"
