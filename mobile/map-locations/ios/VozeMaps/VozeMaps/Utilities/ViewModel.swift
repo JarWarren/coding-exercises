@@ -15,6 +15,7 @@ protocol ViewModel: ObservableObject where Self.ObjectWillChangePublisher == Obs
 }
 
 extension ViewModel {
+    // Dynamic lookup lets us pretend `State` members are directly on the ViewModel
     subscript<Value>(dynamicMember keyPath: KeyPath<State, Value>) -> Value {
         state[keyPath: keyPath]
     }

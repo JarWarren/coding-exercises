@@ -15,7 +15,7 @@ class Networking {
     private let urlSession: URLSession
     
     init(
-        baseURL: URL = URL(string: "https://github.com/JarWarren/coding-exercises/blob/master/mobile")!,
+        baseURL: URL = URL(string: "https://raw.githubusercontent.com/JarWarren/coding-exercises/refs/heads/master/mobile")!,
         authToken: String? = nil,
         urlSession: URLSession = .shared
     ) {
@@ -34,6 +34,7 @@ class Networking {
         guard let url = urlComponents?.url else {
             throw NetworkingError.invalidURL
         }
+        print(url)
         
         var request = URLRequest(url: url)
         request.httpMethod = route.method.rawValue

@@ -18,7 +18,7 @@ enum NetworkingError: Error {
 struct Route<Request: Encodable, Response: Decodable> {
     let method: HTTPMethod
     let path: String
-    let queryItems: [URLQueryItem] = []
+    let queryItems: [URLQueryItem]? = nil
     let body: Request? = nil
     
     enum HTTPMethod: String {
