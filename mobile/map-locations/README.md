@@ -100,7 +100,7 @@ This app follows MVVM.
 
 ### Networking
 - I didn't get around to caching.
-- I'm advocate for a `Routes.swift` file, similar to backend devs.
+- I'm an advocate for a `Routes.swift` file, similar to backend devs.
   - iOS devs tend to spread networking code across the app and tell ourselves it scales better (it doesn't).
     - New services for each resource, or even each action on a resource.
     - In the worst cases, we split resources, endpoints and query items, etc. into complex "request builder" pipelines.
