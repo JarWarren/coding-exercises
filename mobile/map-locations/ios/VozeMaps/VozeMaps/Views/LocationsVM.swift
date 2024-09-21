@@ -11,7 +11,11 @@ class LocationsVM: ViewModel {
     @Published var state = State()
     let network = Networking()
     
-    // State exists on a single struct, rather than spread out across publishers
+    // Important state (user selections, the values they type into textfields, etc) need to live on a VM, ready to be sent elsewhere in the app
+    
+    // Uninteresting state (how far the user has scrolled, whether they have zoomed in) can live on the view and be forgotten
+    
+    // It exists on a single struct both for clarity and performance (see ViewModel.swift)
     struct State: Hashable {
         var locations = [Location]()
         var selectedLocation: Location?
