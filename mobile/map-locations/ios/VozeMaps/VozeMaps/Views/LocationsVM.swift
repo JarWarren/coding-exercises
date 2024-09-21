@@ -15,7 +15,8 @@ class LocationsVM: ViewModel {
     
     // Uninteresting state (how far the user has scrolled, whether they have zoomed in) can live on the view and be forgotten
     
-    // It exists on a single struct both for clarity and performance (see ViewModel.swift)
+    // It exists on a single struct both for clarity and performance
+    // (being a single struct means we can batch updates to the UI)
     struct State: Hashable {
         var locations = [Location]()
         var selectedLocation: Location?
