@@ -11,7 +11,7 @@ import SwiftUI
 struct VozeMapsApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            LocationsView()
         }
     }
 }

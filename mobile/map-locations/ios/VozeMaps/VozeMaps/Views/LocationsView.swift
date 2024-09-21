@@ -1,13 +1,14 @@
 //
-//  ContentView.swift
+//  LocationsView.swift
 //  VozeMaps
 //
 //  Created by Jared Warren on 9/20/24.
 //
 
+import MapKit
 import SwiftUI
 
-struct ContentView: View {
+struct LocationsView: View {
     var body: some View {
         VStack {
             Image(systemName: "globe")
@@ -20,5 +21,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    LocationsView()
 }

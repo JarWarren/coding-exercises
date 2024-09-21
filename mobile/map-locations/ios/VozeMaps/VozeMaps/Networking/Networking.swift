@@ -25,8 +25,8 @@ class Networking {
     }
     
     
-    func perform<ResponseType: Decodable, RequestType: Encodable>(
-        route: Route<ResponseType, RequestType>
+    func perform<RequestType: Encodable, ResponseType: Decodable>(
+        _ route: Route<RequestType, ResponseType>
     ) async throws -> ResponseType {
         var urlComponents = URLComponents(url: baseURL.appendingPathComponent(route.path), resolvingAgainstBaseURL: false)
         urlComponents?.queryItems = route.queryItems
