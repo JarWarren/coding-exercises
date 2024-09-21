@@ -99,11 +99,18 @@ This app follows MVVM.
 - Small views/components don't usually need ViewModels.
 
 ### Networking
-- I'm a fan of creating a `Routes.swift` file, similar to what backend developers do. iOS devs have a habit of spreading networking code across the app and telling ourselves it scales better (it doesn't).
 - I didn't get around to caching.
+- I'm advocate for a `Routes.swift` file, similar to backend devs.
+  - iOS devs tend to spread networking code across the app and tell ourselves it scales better (it doesn't).
+    - New services for each resource, or even each action on a resource.
+    - In the worst cases, we split resources, endpoints and query items, etc. into complex "request builder" pipelines.
+    - Increases risk for code duplication and creates a fragmented networking layer.
+  - The backend practice of a unified Routes file allows for higher visibility and is plainly self documenting.
+
+Mobile apps are networking heavy. Don't start off on the wrong foot by world building a complex networking layer or the entire app's baseline complexity will increase. It's a permanent tax.
 
 ### Models
-- Straightforward. I like to keep app-wide types in the root of the Models folder.
+- I keep app-wide types in the root of the Models folder.
 - DTOs are in a subfolder and are usually private or nested, so they don't clutter the global namespace.
 
 In this particular project, my instinct was to define an `Attribute` array on the `Location` struct. There's an argument that it's more "future-proof" because it can decode fields that don't exist yet.
